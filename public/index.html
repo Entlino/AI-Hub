@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <title>AI Hub</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="auth">
+      <input id="username" placeholder="Benutzername" />
+      <input id="password" type="password" placeholder="Passwort" />
+      <button onclick="register()">Registrieren</button>
+      <button onclick="login()">Login</button>
+    </div>
+    <div id="chat" style="display: none">
+      <div id="chatbox"></div>
+      <input id="msg" placeholder="Nachricht eingeben" />
+      <button onclick="send()">Senden</button>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>
