@@ -1,4 +1,7 @@
 const headers = { "Content-Type": "application/json" };
+marked.setOptions({
+  breaks: true,
+});
 
 async function register() {
   const username = val("username"),
@@ -41,9 +44,18 @@ async function send() {
     headers,
     body: JSON.stringify({ message }),
   });
+
   const data = await res.json();
   addToChat("Claude", data.reply);
 }
+
+document.getElementById("msg").addEventListener("keydown", function (e) {
+  if (e.key === "Enter" && !e.shiftKey) {
+    e.preventDefault();
+    const message = val("msg");
+    if (message) send();
+  }
+});
 
 async function loadChats() {
   const res = await fetch("/chats");
@@ -55,15 +67,24 @@ async function loadChats() {
 }
 
 function addToChat(sender, text) {
-  const box = document.getElementById("chatbox");
-  const el = document.createElement("div");
-  el.innerHTML = `<span class="msg-${
-    sender === "Du" ? "user" : "ai"
-  }">${sender}: ${text}</span>`;
-  box.appendChild(el);
-  box.scrollTop = box.scrollHeight;
+  const chat = document.getElementById("chatbox");
+  const msg = document.createElement("div");
+  msg.classList.add("chat-message");
+
+  if (sender === "AI") {
+    msg.innerHTML = `<strong>${sender}:</strong><br>` + marked.parse(text);
+    msg.querySelectorAll("pre code").forEach((block) => {
+      hljs.highlightElement(block);
+    });
+  } else {
+    msg.innerHTML = `<strong>${sender}:</strong><br>` + text;
+  }
+
+  chat.appendChild(msg);
+  chat.scrollTop = chat.scrollHeight;
 }
 
 function val(id) {
   return document.getElementById(id).value.trim();
 }
+hljs.highlightAll();

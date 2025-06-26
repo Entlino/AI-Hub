@@ -73,3 +73,25 @@ button:hover {
   color: #4a7755;
   font-style: italic;
 }
+
+pre {
+  background: #2d2d2d;
+  color: #f8f8f2;
+  padding: 12px;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-size: 0.95em;
+}
+code {
+  font-family: monospace;
+}
+
+.chat-message {
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 8px;
+  background: #f4f9f6;
+}
+.chat-message strong {
+  color: #2e4732;
+}
