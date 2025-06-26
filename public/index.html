@@ -9,11 +9,6 @@
       rel="stylesheet"
     />
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github-dark.css"
-    />
-    <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/lib/highlight.min.js"></script>
   </head>
   <body>
     <div id="auth">
@@ -22,11 +17,13 @@
       <button onclick="register()">Registrieren</button>
       <button onclick="login()">Login</button>
     </div>
+
     <div id="chat" style="display: none">
       <div id="chatbox"></div>
       <input id="msg" placeholder="Nachricht eingeben" />
       <button onclick="send()">Senden</button>
     </div>
+
     <script src="main.js"></script>
   </body>
 </html>
