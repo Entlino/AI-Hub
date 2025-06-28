@@ -83,4 +83,18 @@ app.get("/chats", async (req, res) => {
   res.json(chats);
 });
 
-app.listen(3000, () => console.log("AI Hub läuft auf http://localhost:3000"));
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET || "secret-key",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      secure: process.env.NODE_ENV === "production",
+      maxAge: 24 * 60 * 60 * 1000,
+      httpOnly: true,
+      sameSite: "lax",
+    },
+  })
+);
+
+app.listen(3000, () => console.log("AI Hub läuft auf http://localhost:6666"));

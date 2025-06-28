@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  chat-hub:
+    build: .
+    ports:
+      - "6666:6666" # Port 6666 für den Chat-Hub
+    volumes:
+      - ./database:/app/database # damit SQLite-Daten persistent bleiben
+      - ./public:/app/public # statische Dateien
+      - ./.env:/app/.env # Umgebungsvariablen
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
